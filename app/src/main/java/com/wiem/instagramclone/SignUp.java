@@ -23,7 +23,7 @@ import java.util.List;
 import javax.security.auth.callback.Callback;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
-    private Button saveBtn , getAllData ;
+    private Button saveBtn , getAllData , btnTransition;
     private EditText editName, editSpeed , editPower , editKickSpeed , editKickPower ;
     private TextView txtGetData ;
     private String allKickBoxers ;
@@ -64,6 +64,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
              allKickBoxers = "" ;
 
                 ParseQuery<ParseObject> queryAll = ParseQuery.getQuery("KickBoxer");
+                //queryAll.whereGreaterThan("kickSpeed",100);
+          //      queryAll.whereGreaterThanOrEqualTo("kickSpeed",200);
+                queryAll.setLimit(2);
                 queryAll.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> objects, ParseException e) {
@@ -81,6 +84,13 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     }
                 });
 
+
+            }
+        });
+        btnTransition = findViewById(R.id.btnNextActivity);
+        btnTransition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
             }
         });
